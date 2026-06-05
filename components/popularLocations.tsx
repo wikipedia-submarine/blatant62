@@ -2,43 +2,54 @@
 
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { FocusPlane } from "./focusPlane"
+import { useLanguage } from "@/lib/language-context"
 
 const LOCATIONS = [
   {
     name: "Tbilisi",
+    nameKa: "თბილისი",
     count: "120+ venues",
+    countKa: "120+ სივრცე",
     bgImage: "/images/tbilisi.webp", 
   },
   {
     name: "Batumi",
+    nameKa: "ბათუმი",
     count: "80+ venues",
+    countKa: "80+ სივრცე",
     bgImage: "/images/batumi.webp",
   },
   {
-    name: "Kazbegi",
-    count: "30+ venues",
-    bgImage: "/images/kazbegi.jpg",
+    name: "Rustavi",
+    nameKa: "რუსთავი",
+    count: "25+ venues",
+    countKa: "25+ სივრცე",
+    bgImage: "/images/rustavi.png",
   },
   {
-    name: "Kvareli",
-    count: "25+ venues",
-    bgImage: "/images/kvareli.jpeg",
+    name: "Kutaisi",
+    nameKa: "ქუთაისი",
+    count: "40+ venues",
+    countKa: "40+ სივრცე",
+    bgImage: "/images/kutaisi.png",
   },
 ]
 
 export function PopularLocations() {
+  const { language } = useLanguage()
+  const isGeorgian = language === "ka"
+  
   return (
     <section className="w-full max-w-[1400px] mx-auto px-6 md:px-12 py-6 md:py-8 section-atmosphere section-atmosphere-locations relative z-[1]">
       <div className="flex items-end justify-between mb-8">
         <h2 className="text-[#1a1a1c] text-2xl md:text-3xl font-bold tracking-tight">
-          Popular locations
+          {isGeorgian ? "პოპულარული ლოკაციები" : "Popular locations"}
         </h2>
         <Link 
           href="/browse" 
           className="group flex items-center gap-2 text-[13px] font-semibold text-[#1a1a1c] hover:opacity-70 transition-opacity"
         >
-          View all locations
+          {isGeorgian ? "ყველა ლოკაცია" : "View all locations"}
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
       </div>
@@ -62,10 +73,10 @@ export function PopularLocations() {
             {/* Content */}
             <div className="relative z-10">
               <h3 className="text-white font-bold text-xl md:text-2xl leading-tight mb-1">
-                {loc.name}
+                {isGeorgian ? loc.nameKa : loc.name}
               </h3>
               <p className="text-white/80 font-medium text-[11px] uppercase tracking-wide">
-                {loc.count}
+                {isGeorgian ? loc.countKa : loc.count}
               </p>
             </div>
           </Link>

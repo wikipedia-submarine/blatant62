@@ -12,22 +12,25 @@ type LanguageContextType = {
 }
 
 const defaultValue: LanguageContextType = {
-  language: "en",
+  language: "ka",
   setLanguage: () => {},
-  t: getTranslation("en"),
+  t: getTranslation("ka"),
   isTransitioning: false,
 }
 
 const LanguageContext = createContext<LanguageContextType>(defaultValue)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("en")
+  const [language, setLanguageState] = useState<Language>("ka")
   const [isTransitioning, setIsTransitioning] = useState(false)
 
   useEffect(() => {
     const saved = localStorage.getItem("language") as Language
     if (saved && (saved === "en" || saved === "ka")) {
       setLanguageState(saved)
+    } else {
+      // Set Georgian as default for first-time visitors
+      localStorage.setItem("language", "ka")
     }
   }, [])
 

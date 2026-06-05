@@ -14,14 +14,14 @@ type NavItem = {
   id: string
   targetId: string
   icon: React.ReactNode
-  labelKey: "festivo" | "venues" | "reviews" | "listYourSpace" | "faq"
+  labelKey: "home" | "venues" | "listYourSpace"
 }
 
 const navItems: NavItem[] = [
   {
-    id: "festivo",
+    id: "home",
     targetId: "#top",
-    labelKey: "festivo",
+    labelKey: "home",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path
@@ -47,30 +47,6 @@ const navItems: NavItem[] = [
     ),
   },
   {
-    id: "testimonials",
-    targetId: "#testimonials",
-    labelKey: "reviews",
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-        />
-      </svg>
-    ),
-  },
-  {
-    id: "faq",
-    targetId: "/faq",
-    labelKey: "faq",
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-  },
-  {
     id: "list-space",
     targetId: "/list-your-space",
     labelKey: "listYourSpace",
@@ -82,7 +58,7 @@ const navItems: NavItem[] = [
   },
 ]
 
-const sectionIds = ["top", "venues", "testimonials", "faq"]
+const sectionIds = ["top", "venues", "list-space"]
 
 const SECTION_VISIBILITY_THRESHOLD = 200
 
@@ -122,14 +98,12 @@ function MobileGlassDock({ activeIndex, isAnimating, tappedIndex, onNavClick }: 
 
   const textColor = "rgba(0, 0, 0, 0.8)"
   const activeColor = "#000000"
-  const borderColor = "rgba(0, 0, 0, 0.04)"
   const bgColor = "rgba(255, 255, 255, 0.85)"
   const pillBg = "rgba(0, 0, 0, 0.08)"
   const shadowColor =
     "0 10px 30px -10px rgba(0, 0, 0, 0.15), 0 4px 10px -2px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.4)"
 
   const getLabel = (item: NavItem) => {
-    if (item.labelKey === "festivo") return "FESTIVO"
     return (t.header as any)[item.labelKey]
   }
 
@@ -276,6 +250,20 @@ function MobileGlassDock({ activeIndex, isAnimating, tappedIndex, onNavClick }: 
 
 const desktopNavItems: NavItem[] = [
   {
+    id: "home",
+    targetId: "#top",
+    labelKey: "home",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+        />
+      </svg>
+    ),
+  },
+  {
     id: "venues",
     targetId: "/browse",
     labelKey: "venues",
@@ -285,20 +273,6 @@ const desktopNavItems: NavItem[] = [
           strokeLinecap="round"
           strokeLinejoin="round"
           d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-        />
-      </svg>
-    ),
-  },
-  {
-    id: "testimonials",
-    targetId: "#testimonials",
-    labelKey: "reviews",
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
         />
       </svg>
     ),
@@ -318,12 +292,11 @@ const desktopNavItems: NavItem[] = [
 type NavbarState = "initial" | "scrolled" | "expanded" | "compact"
 
 function DesktopGlassDock({ activeIndex, isAnimating, tappedIndex, onNavClick, user, loading, isAdmin }: Omit<GlassDockProps, "variant"> & { isAdmin?: boolean }) {
-  const { t, language } = useLanguage()
+  const { t } = useLanguage()
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const isGeorgian = language === "ka"
   const [isHoverAnimating, setIsHoverAnimating] = useState(false)
   const itemWidth = 100 / desktopNavItems.length
-  const desktopActiveIndex = activeIndex !== null && activeIndex > 0 ? activeIndex - 1 : null
+  const desktopActiveIndex = activeIndex
   
   const displayIndex = hoveredIndex !== null ? hoveredIndex : desktopActiveIndex
 
@@ -433,7 +406,7 @@ function DesktopGlassDock({ activeIndex, isAnimating, tappedIndex, onNavClick, u
   const isExpanded = navbarState === "expanded"
   const isInitial  = navbarState === "initial" && hasLoaded
   const isCompact  = navbarState === "compact"
-  const isOverReviews = activeIndex === 2
+  const isOverReviews = false
 
   const isLoggedOut = !loading && !user
   const currentGap = isExpanded ? 12 : isInitial ? 10 : 8
@@ -635,11 +608,7 @@ function DesktopGlassDock({ activeIndex, isAnimating, tappedIndex, onNavClick, u
         transition={{ ...navItemVariants.visible.transition, delay: 0.6 }}
         className="flex items-center justify-around relative"
         animate={{
-          width: isExpanded 
-            ? (isGeorgian ? 330 : 270) 
-            : isInitial 
-              ? (isGeorgian ? 310 : 250) 
-              : (isGeorgian ? 270 : 230),
+          width: isExpanded ? 320 : isInitial ? 300 : 260,
         }}
       >
         {displayIndex !== null && (

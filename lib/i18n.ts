@@ -3,6 +3,7 @@ export type Language = "en" | "ka"
 export const translations = {
   en: {
     header: {
+      home: "Home",
       venues: "Venues",
       howItWorks: "How It Works",
       reviews: "Reviews",
@@ -212,6 +213,7 @@ export const translations = {
   },
   ka: {
     header: {
+      home: "მთავარი",
       venues: "სივრცეები",
       howItWorks: "როგორ მუშაობს",
       reviews: "შეფასებები",
@@ -340,7 +342,7 @@ export const translations = {
     },
     listYourSpaceForm: {
       title: "დაამატე სივრცე",
-      subtitle: "გაზიარე შენი სივრცე ჩვენი საზოგადოების সাথে და დაიწყე ზღვრობა. სულ რამდენიმე წუთი სჭირდება დასაწყებად.",
+      subtitle: "გაზიარე შენი სივრცე ჩვენი საზოგადოების সাথে და დაიწყე ზღვრობა. სულ რამ��ენიმე წუთი სჭირდება დასაწყებად.",
       basicInfo: "ძირითადი ინფორმაცია",
       spaceName: "სივრცის სახელი",
       spaceNamePlaceholder: "მაგ., სქაილაინ პენტჰაუსი",

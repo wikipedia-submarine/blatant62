@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { MapPin, Users, Zap, Wifi, UtensilsCrossed, Heart, Star, ChevronLeft, ChevronRight, Phone, Mail, User, ArrowLeft, Share, Home, Wind, ShieldCheck, Clock, Map, BedDouble, Bath, Square, ChevronRight as ArrowRight } from "lucide-react"
+import { MapPin, Users, Zap, Wifi, UtensilsCrossed, Heart, Star, ChevronLeft, ChevronRight, Phone, User, ArrowLeft, Share, Home, Wind, BedDouble, Bath, Square } from "lucide-react"
 import { useState, useMemo, useCallback, useTransition, memo, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useLanguage } from "@/lib/language-context"
@@ -698,164 +698,106 @@ export function VenueDetailsClient({ venue, isFirestoreVenue }: Props) {
         {/* Left Column */}
         <div className="lg:col-span-7 xl:col-span-8 flex flex-col gap-6">
           
-          {/* About Space */}
-          <div className="bg-white rounded-[24px] p-6 lg:p-8 border border-[#E7ECF3] shadow-[0_8px_40px_rgba(107,122,144,0.04)]">
-            <h2 className="text-[20px] font-bold text-[#111111] mb-4">About this space</h2>
-            <p className="text-[#6B7A90] text-[15px] leading-relaxed mb-8 max-w-3xl">
+          {/* About Space - Simplified */}
+          <div className="bg-white rounded-[20px] p-6 lg:p-8 border border-[#E7ECF3]">
+            <h2 className="text-[18px] font-bold text-[#111111] mb-3">About this space</h2>
+            <p className="text-[#6B7A90] text-[15px] leading-relaxed">
               {venue.description || "Experience elevated living in this stunning venue featuring panoramic city views, a private terrace, and elegant interiors. Perfect for events, celebrations, photo shoots, or a luxurious getaway."}
             </p>
-            <div className="h-px w-full bg-[#E7ECF3] mb-8" />
-            
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-              <div className="flex flex-col items-center gap-3 group">
-                 <div className="w-12 h-12 rounded-full bg-[#F8FAFC] border border-[#E7ECF3] flex items-center justify-center text-[#6B7A90] group-hover:bg-white group-hover:shadow-sm transition-all"><Home className="w-5 h-5" /></div>
-                 <div>
-                   <h4 className="text-[13px] font-bold text-[#111111]">Entire venue</h4>
-                   <p className="text-[12px] text-[#6B7A90] mt-0.5">You'll have the entire place</p>
-                 </div>
+          </div>
+
+          {/* Key Details - Combined and simplified */}
+          <div className="bg-white rounded-[20px] p-6 lg:p-8 border border-[#E7ECF3]">
+            <h2 className="text-[18px] font-bold text-[#111111] mb-5">Details</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+              <div className="flex flex-col items-center text-center p-3 rounded-xl bg-[#F8FAFC]">
+                <Users className="w-5 h-5 text-[#6B7A90] mb-2" />
+                <span className="text-[13px] font-bold text-[#111111]">{venueGuests} guests</span>
               </div>
-              <div className="flex flex-col items-center gap-3 group">
-                 <div className="w-12 h-12 rounded-full bg-[#F8FAFC] border border-[#E7ECF3] flex items-center justify-center text-[#6B7A90] group-hover:bg-white group-hover:shadow-sm transition-all"><Map className="w-5 h-5" /></div>
-                 <div>
-                   <h4 className="text-[13px] font-bold text-[#111111]">Private terrace</h4>
-                   <p className="text-[12px] text-[#6B7A90] mt-0.5">Outdoor with city panorama</p>
-                 </div>
+              <div className="flex flex-col items-center text-center p-3 rounded-xl bg-[#F8FAFC]">
+                <BedDouble className="w-5 h-5 text-[#6B7A90] mb-2" />
+                <span className="text-[13px] font-bold text-[#111111]">4 beds</span>
               </div>
-              <div className="flex flex-col items-center gap-3 group">
-                 <div className="w-12 h-12 rounded-full bg-[#F8FAFC] border border-[#E7ECF3] flex items-center justify-center text-[#6B7A90] group-hover:bg-white group-hover:shadow-sm transition-all"><Zap className="w-5 h-5" /></div>
-                 <div>
-                   <h4 className="text-[13px] font-bold text-[#111111]">Instant booking</h4>
-                   <p className="text-[12px] text-[#6B7A90] mt-0.5">Book without waiting</p>
-                 </div>
+              <div className="flex flex-col items-center text-center p-3 rounded-xl bg-[#F8FAFC]">
+                <Bath className="w-5 h-5 text-[#6B7A90] mb-2" />
+                <span className="text-[13px] font-bold text-[#111111]">3 baths</span>
               </div>
-              <div className="flex flex-col items-center gap-3 group">
-                 <div className="w-12 h-12 rounded-full bg-[#F8FAFC] border border-[#E7ECF3] flex items-center justify-center text-[#6B7A90] group-hover:bg-white group-hover:shadow-sm transition-all"><ShieldCheck className="w-5 h-5" /></div>
-                 <div>
-                   <h4 className="text-[13px] font-bold text-[#111111]">Free cancellation</h4>
-                   <p className="text-[12px] text-[#6B7A90] mt-0.5">Cancel up to 7 days before</p>
-                 </div>
+              <div className="flex flex-col items-center text-center p-3 rounded-xl bg-[#F8FAFC]">
+                <Home className="w-5 h-5 text-[#6B7A90] mb-2" />
+                <span className="text-[13px] font-bold text-[#111111]">Entire venue</span>
               </div>
             </div>
+            
+            {/* Amenities inline */}
+            {amenities.length > 0 && (
+              <>
+                <div className="h-px w-full bg-[#E7ECF3] my-5" />
+                <h3 className="text-[15px] font-bold text-[#111111] mb-4">Amenities</h3>
+                <div className="flex flex-wrap gap-2">
+                  {amenities.slice(0, 6).map(a => {
+                    const am = AMENITIES_MAP[a as keyof typeof AMENITIES_MAP] || { icon: Square, label: a }
+                    const Icon = am.icon
+                    return (
+                      <span key={a} className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[#F8FAFC] text-[13px] font-medium text-[#111111]">
+                        <Icon className="w-4 h-4 text-[#6B7A90]" />
+                        {am.label}
+                      </span>
+                    )
+                  })}
+                  {amenities.length > 6 && (
+                    <span className="inline-flex items-center px-3 py-2 rounded-lg bg-[#F8FAFC] text-[13px] font-medium text-[#6B7A90]">
+                      +{amenities.length - 6} more
+                    </span>
+                  )}
+                </div>
+              </>
+            )}
           </div>
 
-          {/* Amenities */}
-          <div className="bg-white rounded-[24px] p-6 lg:p-8 border border-[#E7ECF3] shadow-[0_8px_40px_rgba(107,122,144,0.04)]">
-             <div className="flex items-center justify-between mb-8">
-               <h2 className="text-[20px] font-bold text-[#111111]">Amenities</h2>
-               <button className="text-[13px] font-bold text-[#6B7A90] hover:text-[#111111] transition-colors cursor-pointer">View all ({amenities.length || 12})</button>
-             </div>
-             <div className="flex flex-wrap gap-y-8 gap-x-4 justify-between sm:justify-start sm:gap-x-12 px-2">
-               {amenities.slice(0, 8).map(a => {
-                 const am = AMENITIES_MAP[a as keyof typeof AMENITIES_MAP] || { icon: Square, label: a }
-                 const Icon = am.icon
-                 return (
-                   <div key={a} className="flex flex-col items-center gap-3 w-[72px] text-center group">
-                     <div className="w-[52px] h-[52px] rounded-full bg-[#F8FAFC] border border-[#E7ECF3] flex items-center justify-center text-[#6B7A90] group-hover:bg-white group-hover:shadow-sm transition-all">
-                       <Icon className="w-5 h-5" />
-                     </div>
-                     <span className="text-[11px] font-bold text-[#111111] capitalize leading-tight">{am.label}</span>
-                   </div>
-                 )
-               })}
-             </div>
-          </div>
-
-          {/* Details */}
-          <div className="bg-[#F8FAFC] rounded-[24px] p-6 lg:p-8 border border-[#E7ECF3] flex flex-col w-full">
-             <h2 className="text-[18px] font-bold text-[#111111] mb-6">Details</h2>
-             <div className="space-y-4 text-[13px]">
-                <div className="flex justify-between items-center">
-                  <span className="text-[#6B7A90] flex items-center gap-2"><Users className="w-4 h-4"/> Guest capacity</span>
-                  <span className="font-bold text-[#111111]">Up to {venueGuests} guests</span>
-                </div>
-                <div className="h-px bg-[#E7ECF3]" />
-                <div className="flex justify-between items-center">
-                  <span className="text-[#6B7A90] flex items-center gap-2"><BedDouble className="w-4 h-4"/> Bedrooms</span>
-                  <span className="font-bold text-[#111111]">4 bedrooms</span>
-                </div>
-                <div className="h-px bg-[#E7ECF3]" />
-                <div className="flex justify-between items-center">
-                  <span className="text-[#6B7A90] flex items-center gap-2"><Square className="w-4 h-4"/> Beds</span>
-                  <span className="font-bold text-[#111111]">6 beds</span>
-                </div>
-                <div className="h-px bg-[#E7ECF3]" />
-                <div className="flex justify-between items-center">
-                  <span className="text-[#6B7A90] flex items-center gap-2"><Bath className="w-4 h-4"/> Bathrooms</span>
-                  <span className="font-bold text-[#111111]">3 bathrooms</span>
-                </div>
-                <div className="h-px bg-[#E7ECF3]" />
-                <div className="flex justify-between items-center">
-                  <span className="text-[#6B7A90] flex items-center gap-2"><Clock className="w-4 h-4"/> Check-in</span>
-                  <span className="font-bold text-[#111111]">3:00 PM</span>
-                </div>
-                <div className="h-px bg-[#E7ECF3]" />
-                <div className="flex justify-between items-center">
-                  <span className="text-[#6B7A90] flex items-center gap-2"><Clock className="w-4 h-4"/> Check-out</span>
-                  <span className="font-bold text-[#111111]">11:00 AM</span>
-                </div>
-                <div className="h-px bg-[#E7ECF3]" />
-                <div className="flex justify-between items-center">
-                  <span className="text-[#6B7A90] flex items-center gap-2"><Home className="w-4 h-4"/> Property type</span>
-                  <span className="font-bold text-[#111111]">Penthouse</span>
-                </div>
-             </div>
-          </div>
-
-          {/* Reviews Section Wrapper */}
-          <div className="bg-white rounded-[24px] p-6 lg:p-8 border border-[#E7ECF3] shadow-[0_8px_40px_rgba(107,122,144,0.04)] mb-8">
+          {/* Reviews Section */}
+          <div className="bg-white rounded-[20px] p-6 lg:p-8 border border-[#E7ECF3]">
              <VenueReviews venueId={isFirestoreVenue ? venue.id : venue.id.toString()} />
           </div>
         </div>
 
         {/* Right Column (Sticky Booking Card) */}
         <div className="lg:col-span-5 xl:col-span-4 relative">
-          <div className="sticky top-[104px] bg-white rounded-[24px] p-6 lg:p-8 border border-[#E7ECF3] shadow-[0_12px_40px_rgba(107,122,144,0.08)] flex flex-col gap-6">
-            <div>
-              <p className="text-[13px] font-bold text-[#111111] mb-1">Price</p>
-              <div className="flex items-end gap-1.5">
-                <span className="text-[36px] font-extrabold text-[#111111] leading-none">${venuePrice}</span>
-                <span className="text-[14px] font-medium text-[#6B7A90] mb-1">/ night</span>
-              </div>
-              <p className="text-[12px] text-[#6B7A90] mt-2">Average price per night</p>
+          <div className="sticky top-[104px] bg-white rounded-[20px] p-6 border border-[#E7ECF3] flex flex-col gap-5">
+            {/* Price */}
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-[32px] font-extrabold text-[#111111] leading-none">${venuePrice}</span>
+              <span className="text-[14px] font-medium text-[#6B7A90]">/ night</span>
             </div>
             
-            <div className="flex flex-col gap-3">
-              <button onClick={openBookingModal} className="w-full py-3.5 rounded-[12px] bg-[#111111] text-white font-bold text-[15px] hover:bg-black active:scale-[0.98] transition-all shadow-[0_4px_14px_rgba(17,17,17,0.15)] cursor-pointer">
+            {/* Action Buttons */}
+            <div className="flex flex-col gap-2.5">
+              <button onClick={openBookingModal} className="w-full py-3.5 rounded-xl bg-[#111111] text-white font-bold text-[15px] hover:bg-black active:scale-[0.98] transition-all cursor-pointer">
                 Request to book
               </button>
-              <button onClick={handleSave} className="w-full py-3.5 rounded-[12px] bg-white border border-[#E7ECF3] text-[#111111] font-semibold text-[15px] hover:bg-[#F8FAFC] active:scale-[0.98] flex items-center justify-center gap-2 transition-all cursor-pointer">
-                <Heart className={`w-4 h-4 ${isFavorite ? "fill-[#4A90D9] text-[#4A90D9]" : "text-[#6B7A90]"}`} /> {isFavorite ? "Saved" : "Save for later"}
+              <button onClick={handleSave} className="w-full py-3 rounded-xl bg-[#F8FAFC] text-[#111111] font-semibold text-[14px] hover:bg-[#EEF2F7] active:scale-[0.98] flex items-center justify-center gap-2 transition-all cursor-pointer">
+                <Heart className={`w-4 h-4 ${isFavorite ? "fill-[#4A90D9] text-[#4A90D9]" : "text-[#6B7A90]"}`} /> {isFavorite ? "Saved" : "Save"}
               </button>
             </div>
-            <p className="text-center text-[12px] text-[#6B7A90]">You won't be charged yet</p>
+            
+            <p className="text-center text-[12px] text-[#6B7A90]">You won&apos;t be charged yet</p>
 
-            <div className="h-px w-full bg-[#E7ECF3] my-1" />
+            <div className="h-px w-full bg-[#E7ECF3]" />
 
-            <div className="flex items-center gap-4 cursor-pointer hover:bg-[#F8FAFC] p-3 -mx-3 rounded-[16px] transition-colors" onClick={handleProfileClick}>
-               <div className="w-12 h-12 rounded-full bg-[#F5F7FB] border border-[#E7ECF3] flex items-center justify-center">
-                 <User className="w-6 h-6 text-[#6B7A90]" />
+            {/* Host */}
+            <div className="flex items-center gap-3 cursor-pointer" onClick={handleProfileClick}>
+               <div className="w-10 h-10 rounded-full bg-[#F5F7FB] border border-[#E7ECF3] flex items-center justify-center">
+                 <User className="w-5 h-5 text-[#6B7A90]" />
                </div>
                <div>
                  <h4 className="text-[14px] font-bold text-[#111111]">Hosted by {submittedBy}</h4>
-                 <p className="text-[12px] text-[#6B7A90] mt-0.5">Superhost • 5+ venues</p>
+                 <p className="text-[11px] text-[#6B7A90]">Superhost</p>
                </div>
             </div>
             
-            <div className="h-px w-full bg-[#E7ECF3] my-1" />
-            
-            {/* Location (Moved from left column) */}
-            <div className="flex flex-col gap-3">
-               <h3 className="text-[14px] font-bold text-[#111111]">Location</h3>
-               <div className="w-full h-[140px] rounded-[16px] border border-[#E7ECF3] relative overflow-hidden flex items-center justify-center shadow-[0_2px_8px_rgba(107,122,144,0.04)]">
-                 <Image src="/images/map.webp" alt="Map" fill className="object-cover" />
-                 <MapPin className="w-6 h-6 text-[#111111] drop-shadow-md z-10 relative" />
-               </div>
-               <div>
-                 <h4 className="text-[13px] font-bold text-[#111111]">{venueLocation}</h4>
-                 <button className="text-[12px] font-bold text-[#6B7A90] hover:text-[#111111] flex items-center gap-1 mt-1 transition-colors">
-                   Open in Google Maps <ArrowRight className="w-3 h-3" />
-                 </button>
-               </div>
+            {/* Location */}
+            <div className="flex items-center gap-2 text-[13px] text-[#6B7A90]">
+              <MapPin className="w-4 h-4" />
+              <span>{venueLocation}</span>
             </div>
           </div>
         </div>
